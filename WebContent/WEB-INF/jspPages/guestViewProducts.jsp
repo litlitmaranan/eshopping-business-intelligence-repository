@@ -7,11 +7,11 @@
 <head>
 <link rel="stylesheet" type="text/css" href="resources/css/view.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-</head>
 <title>E-Shopping System</title>
 </head>
 <body>
- <div class="content">
+	<div class="content">
+		<div class="content">
 		<div id="top">
 			<div class="topright">
 			 	by Leah D. Maranan			
@@ -49,42 +49,23 @@
 			</div>
 			
 			<div class="left">
-				<h2><font color="blue">${admin}</font> <font color="red">${guest}</font></h2>
+				<h2><font color="blue">${username}</font> <font color="red"> ${guest}</font></h2>
 				<font color="red">${errormessage}</font> <font color="red">${message}</font>
 				<font color="blue">${customer}</font>
-				<form:form method="GET" action="/Eshopping/transactions">
-				<tr>
-					<td colspan="4"><c:choose>
-							<c:when test="${admin eq 'admin'}">
-								<input type="hidden" value="admin" name="admin" class="login login-submit" />
-								<input value="Add Product" name="addProduct" type="submit" class="login login-submit" />
-								<input value="View Products" name="viewAllProductAdmin" type="submit" class="login login-submit" />
-								<input value="Log Out" name="logOut" type="submit" class="login login-submit" />
-							</c:when>
-							<c:when test="${not empty guest}">
-								<input type="hidden" value="guest" name="guest" class="login login-submit" />
-								<input value="View Products" name="viewAllProduct" type="submit" class="login login-submit" />
-								<input value="Log Out" name="logOut" type="submit" class="login login-submit" />
-							</c:when>
-							<c:when test="${empty guest && 'admin' != admin}">
-								<input type="hidden" value="${admin}" name="customer" class="login login-submit" />
-								<input value="View Products" name="viewAllProductCustomer" type="submit" class="login login-submit" />
-								<input value="Log Out" name="logOut" type="submit" class="login login-submit" />
-							</c:when>
-						</c:choose></td>
-				</tr>
+				<form:form method="GET" action="/Eshopping/guestPrivileges">
+					<input type="hidden" value="guest" name="guest" class="login login-submit"/>
+					<input value="<<back" name="logOutPageGuest" type="submit" class="login login-submit"/>
 			</form:form>
 			<table>
-			<tbody>
-			<tr>
+		<tr>
 			<td></td>
 			<td>Product Brand</td>
 			<td>Product Description</td>
 			<td>Quantity</td>
 			<td>Product Cost</td>
 		</tr>
-
-			<c:forEach var="product" items="${productlistOwn}">
+		<tbody>
+			<c:forEach var="product" items="${productlist}">
 				<tr>
 					<td><c:out value='${product.productid}'></c:out></td>
 					<td><c:out value='${product.productbrand}'></c:out></td>
@@ -94,7 +75,7 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-		</table>
+	</table>
 
 			</div>
 			

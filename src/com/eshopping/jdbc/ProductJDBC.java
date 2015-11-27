@@ -48,4 +48,44 @@ public class ProductJDBC {
 		jdbcTemplateObject.update(SQL, productid);
 		return;
 	}
+
+	public void insertProductsInCart(String productbrand, String productname,
+			int quantity, int productprice) {
+		String SQLInsert = "INSERT INTO cart_db (productbrand, productname, quantity, productprice) VALUES (?, ?, ?, ?)";
+		jdbcTemplateObject.update(SQLInsert, productbrand, productname, quantity, productprice);
+		return;
+		
+	}
+
+	public void insertProductsInOwn(String productbrand, String productname,
+			int quantity, int productprice) {
+		String SQLInsert = "INSERT INTO own_db (productbrand, productname, quantity, productprice) VALUES (?, ?, ?, ?)";
+		jdbcTemplateObject.update(SQLInsert, productbrand, productname, quantity, productprice);
+		return;
+	}
+
+	//TODO deleteProductInCart
+	public void deleteProductInCart(int productid) {
+		String SQL = "DELETE FROM cart_db WHERE productid = ?";
+		jdbcTemplateObject.update(SQL, productid);
+		return;
+	}
+
+	public List<ProductAccessor> viewProductsCart() {
+		String SQL = "SELECT * FROM cart_db;";
+		List<ProductAccessor> productlist = jdbcTemplateObject.query(SQL, new ProductMapper());
+		return productlist;
+	}
+
+	public void deleteProductAllItemsInCart() {
+		String SQL = "DELETE * FROM cart_db";
+		jdbcTemplateObject.query(SQL, new ProductMapper());
+		return;
+	}
+
+	public List<ProductAccessor> viewProductsOwn() {
+		String SQL = "SELECT * FROM own_db;";
+		List<ProductAccessor> productlist = jdbcTemplateObject.query(SQL, new ProductMapper());
+		return productlist;
+	}
 }
