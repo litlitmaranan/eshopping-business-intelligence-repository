@@ -7,11 +7,10 @@
 <head>
 <link rel="stylesheet" type="text/css" href="resources/css/view.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-</head>
 <title>E-Shopping System</title>
 </head>
 <body>
- <div class="content">
+	<div class="content">
 		<div id="top">
 			<div class="topright">
 			 	by Leah D. Maranan			
@@ -49,52 +48,45 @@
 			</div>
 			
 			<div class="left">
-				<h2><font color="blue">${admin}</font> <font color="red">${guest}</font></h2>
-				<font color="red">${errormessage}</font> <font color="red">${message}</font>
-				<font color="blue">${customer}</font>
-				<form:form method="GET" action="/Eshopping/transactions">
-				<tr>
-					<td colspan="4"><c:choose>
-							<c:when test="${admin eq 'admin'}">
-								<input type="hidden" value="admin" name="admin" class="login login-submit" />
-								<input value="Add Product" name="addProduct" type="submit" class="login login-submit" />
-								<input value="View Products" name="viewAllProductAdmin" type="submit" class="login login-submit" />
-								<input value="Log Out" name="logOut" type="submit" class="login login-submit" />
-							</c:when>
-							<c:when test="${not empty guest}">
-								<input type="hidden" value="guest" name="guest" class="login login-submit" />
-								<input value="View Products" name="viewAllProduct" type="submit" class="login login-submit" />
-								<input value="Log Out" name="logOut" type="submit" class="login login-submit" />
-							</c:when>
-							<c:when test="${empty guest && 'admin' != admin}">
-								<input type="hidden" value="${admin}" name="customer" class="login login-submit" />
-								<input value="View Products" name="viewAllProductCustomer" type="submit" class="login login-submit" />
-								<input value="Log Out" name="logOut" type="submit" class="login login-submit" />
-							</c:when>
-						</c:choose></td>
-				</tr>
-			</form:form>
+				<h2><font color="blue">${customer}</font> <font color="red">${guest}</font></h2>
+				<form:form method="GET" action="/Eshopping/backToMenuCustomer">
+				 <input type="hidden" value="${customer}" name="customer" class="login login-submit"/> 
+				 <input value="<<back" name="backPageCustomer" type="submit" class="login login-submit"/> 
+		</form:form>
+
+		
 			<table>
-			<tbody>
-			<tr>
+		<tr>
 			<td></td>
 			<td>Product Brand</td>
 			<td>Product Description</td>
 			<td>Quantity</td>
 			<td>Product Cost</td>
+			<td></td>
 		</tr>
-
-			<c:forEach var="product" items="${productlistOwn}">
+		<tbody>
+			<c:forEach var="product" items="${productlist}">
 				<tr>
 					<td><c:out value='${product.productid}'></c:out></td>
 					<td><c:out value='${product.productbrand}'></c:out></td>
 					<td><c:out value='${product.productname}'></c:out></td>
 					<td><c:out value='${product.quantity}'></c:out></td>
 					<td><c:out value='${product.productprice}'></c:out></td>
-				</tr>
+				<td><form:form method="GET" action="/Eshopping/accessToUser">
+						<input type="hidden" id="productid" name="productid" value="${product.productid}" />
+						<input type="hidden" id="productid" name="productbrand" value="${product.productbrand}" />
+						<input type="hidden" id="productid" name="productname" value="${product.productname}" />
+						<input type="hidden" id="productid" name="quantity" value="${product.quantity}" />
+						<input type="hidden" id="productid" name="productprice" value="${product.productprice}" />
+						<input type="hidden" id="customer" name="customer" value="${customer}" />
+						<input type="submit" value="Buy Item" name="buyButton" class="login login-submit"/>
+						<p>
+						<input type="submit" value="Remove Item" name="deleteFromCart" class="login login-submit"/>
+
+					</form:form></td>
 			</c:forEach>
 		</tbody>
-		</table>
+	</table>
 
 			</div>
 			

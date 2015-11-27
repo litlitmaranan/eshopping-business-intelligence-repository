@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2015 at 02:11 PM
+-- Generation Time: Mar 29, 2015 at 10:02 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -31,13 +31,20 @@ CREATE TABLE IF NOT EXISTS `admin_db` (
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `admin_db`
+-- Table structure for table `cart_db`
 --
 
-INSERT INTO `admin_db` (`username`, `password`) VALUES
-('admin', '1234'),
-('j', 'j');
+CREATE TABLE IF NOT EXISTS `cart_db` (
+  `productid` int(50) NOT NULL AUTO_INCREMENT,
+  `productbrand` varchar(50) NOT NULL,
+  `productname` varchar(50) NOT NULL,
+  `quantity` int(50) NOT NULL,
+  `productprice` int(50) NOT NULL,
+  PRIMARY KEY (`productid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -54,14 +61,35 @@ CREATE TABLE IF NOT EXISTS `customer_db` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `customer_db`
+-- Table structure for table `own_db`
 --
 
-INSERT INTO `customer_db` (`id`, `firstname`, `lastname`, `address`, `contact`, `username`, `password`) VALUES
-(1, 'j', 'j', 'j', 'j', 'j', 'j');
+CREATE TABLE IF NOT EXISTS `own_db` (
+  `productid` int(50) NOT NULL AUTO_INCREMENT,
+  `productbrand` varchar(50) NOT NULL,
+  `productname` varchar(50) NOT NULL,
+  `quantity` int(50) NOT NULL,
+  `productprice` int(50) NOT NULL,
+  PRIMARY KEY (`productid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `own_db`
+--
+
+INSERT INTO `own_db` (`productid`, `productbrand`, `productname`, `quantity`, `productprice`) VALUES
+(1, 'iPhone', 'adfadsf', 234234, 34234),
+(2, '', 'samsun note mini', 2, 25000),
+(3, '', 'adf', 23, 42),
+(4, '', 'adf', 23, 42),
+(5, '', 'adf', 23, 42),
+(6, 'Sony', 'gjhjkyugfhj', 134132, 3241324),
+(7, '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -76,16 +104,7 @@ CREATE TABLE IF NOT EXISTS `prod_db` (
   `quantity` int(50) NOT NULL,
   `productprice` int(50) NOT NULL,
   PRIMARY KEY (`productid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `prod_db`
---
-
-INSERT INTO `prod_db` (`productid`, `productbrand`, `productname`, `quantity`, `productprice`) VALUES
-(1, '', 'adf', 23, 42),
-(2, '', 'samsun note mini', 2, 25000),
-(3, '', 'htc one plus', 3, 12345);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
